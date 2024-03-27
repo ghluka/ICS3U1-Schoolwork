@@ -4,7 +4,7 @@
 """
 
 __author__ = "Luka"
-__date__ = "2024/03/19"
+__date__ = "2024/03/27"
 
 import random
 
@@ -72,7 +72,7 @@ def dicey_rolls(sides:int) -> bool:
         win = False
     elif roll_3 == 1:
         win = False
-    elif roll_3 >= roll_1 + roll_2:
+    elif roll_3 > roll_1 + roll_2:
         win = False
     elif roll_1 % 2 == roll_2 % 2 == roll_3 % 2 == 1:
         win = False
