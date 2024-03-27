@@ -51,9 +51,15 @@ def which_term(month:int, day:int) -> str:
 
 def is_factorable(a:int, b:int, c:int) -> bool:
     """Returns a boolean value of whether or not a quadratic equation can be factored"""
-    discriminant = (b ** 2 - 4 * a * c) ** .5
+    factorable = True
+    discriminant = b ** 2 - 4 * a * c
 
-    return discriminant == int(discriminant)
+    if discriminant != abs(discriminant):
+        factorable = False
+    elif discriminant ** .5 != int(discriminant ** .5):
+        factorable = False
+    
+    return factorable
 
 
 def dicey_rolls(sides:int) -> bool:
