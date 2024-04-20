@@ -1,22 +1,3 @@
-#Write a program that 'spins' a random spinner from 1 - 50
-#until it gets a 25, and then outputs how many spins it took.
-
-#Also, it will output the set of all spins above 25,
-#and all that were below 25.   *building up string!
-
-#Also, determine what the highest of all the spins was....
-
-
-'''
-Sample Execution Output:
-
-It took 20 spins to get a 25.
-Above 25: 34, 34, 48, 38, 33, 37, 43, 26, 26, 26, 41, 44, 43 
-Below 25: 24, 4, 24, 10, 12, 10 
-Highest overall spin was a 48
-
-'''
-
 from random import randrange
 
 #your code below
