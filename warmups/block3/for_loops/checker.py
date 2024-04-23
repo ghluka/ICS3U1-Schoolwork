@@ -1,7 +1,7 @@
 def checker(n:int) -> str:
     out = ""
 
-    even = f"{chr(9608)}{chr(9608)}  " * int(n - n // 2)
+    even = f"{chr(9608)}{chr(9608)}  " * (n - n // 2)
     odd = f"  {chr(9608)}{chr(9608)}" * (n // 2)
 
     for i in range(n):
