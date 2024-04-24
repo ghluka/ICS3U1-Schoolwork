@@ -141,67 +141,6 @@ def braille_to_text(text:str) -> str:
 
     return out
 
-def braille_to_text(text:str) -> str:
-    out = ""
-
-    for c in text:
-        if c == "\u2801":
-            out += "a"
-        elif c == "\u2803":
-            out += "b"
-        elif c == "c":
-            out += "\u2809"
-        elif c == "d":
-            out += "\u2819"
-        elif c == "e":
-            out += "\u2811"
-        elif c == "f":
-            out += "\u280b"
-        elif c == "g":
-            out += "\u281b"
-        elif c == "h":
-            out += "\u2813"
-        elif c == "i":
-            out += "\u280a"
-        elif c == "j":
-            out += "\u281a"
-        elif c == "k":
-            out += "\u2805"
-        elif c == "l":
-            out += "\u2807"
-        elif c == "m":
-            out += "\u280d"
-        elif c == "n":
-            out += "\u281d"
-        elif c == "o":
-            out += "\u2815"
-        elif c == "p":
-            out += "\u280f"
-        elif c == "q":
-            out += "\u281f"
-        elif c == "r":
-            out += "\u2817"
-        elif c == "s":
-            out += "\u280e"
-        elif c == "t":
-            out += "\u281e"
-        elif c == "u":
-            out += "\u2825"
-        elif c == "v":
-            out += "\u2827"
-        elif c == "w":
-            out += "\u283d"
-        elif c == "x":
-            out += "\u282d"
-        elif c == "y":
-            out += "\u283d"
-        elif c == "z":
-            out += "\u2835"
-        elif c == " ":
-            out += " "
-
-    return out
-
 def domino_str(roll_1:int, roll_2:int) -> str:
     out = " " + "_" * 11 + " \n"
 
