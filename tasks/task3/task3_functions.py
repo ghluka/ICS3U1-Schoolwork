@@ -1,8 +1,16 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Provides 5 functions for completing all 6 parts of Task 3's assignment 
+"""
+
+__author__ = "Luka"
+__date__ = "2024/04/24"
+
 import math
 import random
 
 def square_root(number:float) -> float:
-    """Calculates the square root of a number using Heron's method"""
+    """Calculates an approximation of the square root of a number using Heron's method"""
     estimate = 5 * 10 ** (math.log(number, 10) / 2 - 1)
     
     while not math.isclose(estimate, number/estimate):
@@ -10,19 +18,24 @@ def square_root(number:float) -> float:
 
     return estimate
 
-def digit_product_sum(n:int) -> int:
+
+def digit_product_sum(number:int) -> int:
+    """Adds every digit multiplied with every digit in the same number"""
     sum = 0
 
-    for i in str(n):
-        for v in str(n):
-            sum += int(i) * int(v)
+    for x in str(number):
+        for y in str(number):
+            sum += int(x) * int(y)
     
     return sum
 
+
 def text_to_braille(text:str) -> str:
+    """Converts lowercase letters and spaces into Braille symbols"""
     out = ""
 
     for c in text:
+        # latin characters to braille if-statement
         if c == "a":
             out += "\u2801"
         elif c == "b":
@@ -80,10 +93,13 @@ def text_to_braille(text:str) -> str:
 
     return out
 
+
 def braille_to_text(text:str) -> str:
+    """Converts lowercase Braille symbols and spaces into text"""
     out = ""
 
     for c in text:
+        # braille to latin characters if-statement
         if c == "\u2801":
             out += "a"
         elif c == "\u2803":
@@ -141,100 +157,123 @@ def braille_to_text(text:str) -> str:
 
     return out
 
-def domino_str(roll_1:int, roll_2:int) -> str:
-    out = " " + "_" * 11 + " \n"
 
+def domino_str(roll_1:int, roll_2:int) -> str:
+    """Returns a formatted string of two dominos side by side with the parameters being their respective amount of pips"""
+    # start grids
     grid_row_1 = "|"
     grid_row_2 = "|"
     grid_row_3 = "|"
 
+    # loops through roll_1 and roll_2
     for roll in f"{roll_1}{roll_2}":
         roll = int(roll)
 
         if roll == 2 or roll == 3:
-            grid_row_1 += "\u25cf    "
+            grid_row_1 += "\u25cf    " # top-left pip
+            grid_row_3 += "    \u25cf" # bottom-right pip
         elif roll == 4 or roll == 5:
-            grid_row_1 += "\u25cf   \u25cf"
-            grid_row_3 += "\u25cf   \u25cf"
+            grid_row_1 += "\u25cf   \u25cf" # top-left and top-right pips
+            grid_row_3 += "\u25cf   \u25cf" # bottom-left and bottom-right pips
         elif roll == 6:
-            grid_row_1 += "\u25cf \u25cf \u25cf"
-            grid_row_3 += "\u25cf \u25cf \u25cf"
+            grid_row_1 += "\u25cf \u25cf \u25cf" # top pips
+            grid_row_3 += "\u25cf \u25cf \u25cf" # bottom pips
         else:
-            grid_row_1 += "     "
-        grid_row_1 += "|"
+            grid_row_1 += "     " # empty top
+            grid_row_3 += "     " # empty bottom
 
         if roll == 1 or roll == 3 or roll == 5:
-            grid_row_2 += "  \u25cf  "
+            grid_row_2 += "  \u25cf  " # center pip
         else:
-            grid_row_2 += "     "
+            grid_row_2 += "     " # empty middle
+        
+        # close rows
+        grid_row_1 += "|"
         grid_row_2 += "|"
-
-        if roll == 2 or roll == 3:
-            grid_row_3 += "    \u25cf"
-        elif roll != 4 and roll != 5 and roll != 6:
-            grid_row_3 += "     "
         grid_row_3 += "|"
+
+    # top of dice
+    out = " " + "_" * 11 + " \n"
     
-
+    # add grids to return
     out += f"{grid_row_1}\n{grid_row_2}\n{grid_row_3}\n"
-
+    
+    # bottom of dice
     out += " " + f"{chr(8254)}" * 11 + " "
     
     return out
 
+
 def tree_box(size:int) -> str:
-    out = f"+{'-' * size * 2}+\n"
-    backslash = "\\"
+    """Returns a formatted string of a tree contained in a box.
     
+    The foliage will reach the width of the parameter "size",
+    while the trunk will reach the height of the parameter "size".
+    """
+    backslash = "\\"
+
+    # box top:
+    out = f"+{'-' * size * 2}+\n"
+    
+    # foliage:
     for i in range(1, size + 1):
         out += f"|{'/' * i: >{size}}{backslash * i: <{size}}|\n"
+    
+    # trunk:
     for i in range(1, size + 1):
+        # alternate trunk styles ("|}" and "{|")
         if i % 2 == 1:
             out += f"|{'|}': ^{size * 2}}|\n"
         else:
             out += f"|{'{|': ^{size * 2}}|\n"
     
+    # box bottom:
     out += f"+{'-' * size * 2}+\n"
     
     return out
 
-def domino_stack(left_base:int, right_base:int, target_points:int) -> str:
-    out = ""
-    game = 0
-    points = 0
 
+def domino_stack(left_base:int, right_base:int, target_points:int) -> str:
+    """Plays a game of domino stack with user defined bases and target points"""
+    out = ""
+    
+    points = 0
+    current_round = 0
     while points <= target_points:
-        game += 1
-        points = 0
+        current_round += 1
+        points = 0 # reset points
 
         stack = domino_str(left_base, right_base)
 
         stack_left = left_base
         stack_right = right_base
 
+        # draw dominos
         domino_left = random.randint(1, 6)
         domino_right = random.randint(1, 6)
 
+        # continue with round until neither drawn dominos match with the top of the stack
         while domino_left == stack_left or domino_right == stack_right:
+            # add points
             if domino_left == stack_left and domino_right == stack_right:
                 points += 5
             else:
                 points += 2
 
+            # push drawn dominos to stack
             stack_left = domino_left
             stack_right = domino_right
 
             stack = f"{domino_str(stack_left, stack_right)}\n{stack}"
 
+            # draw new dominos
             domino_left = random.randint(1, 6)
             domino_right = random.randint(1, 6)
         
-        stack += f"\nGame #{game} Points: {points}"
+        # game summary
+        stack += f"\ncurrent_round #{current_round} Points: {points}"
         if points <= target_points:
             stack += "\n"
-
         out += stack
 
     return out
-
-print(domino_stack(1, 4, 10))
