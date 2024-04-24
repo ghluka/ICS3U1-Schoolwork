@@ -1,11 +1,11 @@
 import math
+import random
 
 def square_root(number:float) -> float:
     """Calculates the square root of a number using Heron's method"""
     estimate = 5 * 10 ** (math.log(number, 10) / 2 - 1)
-    estimate = 1
+    
     while not math.isclose(estimate, number/estimate):
-        print(estimate)
         estimate = (estimate + (number / estimate)) / 2
 
     return estimate
@@ -68,7 +68,7 @@ def text_to_braille(text:str) -> str:
         elif c == "v":
             out += "\u2827"
         elif c == "w":
-            out += "\u283d"
+            out += "\u283a"
         elif c == "x":
             out += "\u282d"
         elif c == "y":
@@ -128,7 +128,7 @@ def braille_to_text(text:str) -> str:
             out += "u"
         elif c == "\u2827":
             out += "v"
-        elif c == "\u283d":
+        elif c == "\u283a":
             out += "w"
         elif c == "\u282d":
             out += "x"
@@ -198,3 +198,43 @@ def tree_box(size:int) -> str:
     
     return out
 
+def domino_stack(left_base:int, right_base:int, target_points:int) -> str:
+    out = ""
+    game = 0
+    points = 0
+
+    while points <= target_points:
+        game += 1
+        points = 0
+
+        stack = domino_str(left_base, right_base)
+
+        stack_left = left_base
+        stack_right = right_base
+
+        domino_left = random.randint(1, 6)
+        domino_right = random.randint(1, 6)
+
+        while domino_left == stack_left or domino_right == stack_right:
+            if domino_left == stack_left and domino_right == stack_right:
+                points += 5
+            else:
+                points += 2
+
+            stack_left = domino_left
+            stack_right = domino_right
+
+            stack = f"{domino_str(stack_left, stack_right)}\n{stack}"
+
+            domino_left = random.randint(1, 6)
+            domino_right = random.randint(1, 6)
+        
+        stack += f"\nGame #{game} Points: {points}"
+        if points <= target_points:
+            stack += "\n"
+
+        out += stack
+
+    return out
+
+print(domino_stack(1, 4, 10))
