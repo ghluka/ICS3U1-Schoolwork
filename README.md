@@ -16,6 +16,12 @@ The `exercises` directory contains all warmups that were required to be submitte
 
 The `tasks` directory contains all evaluations worth marks that were done online. These are typically just the final projects of a unit as other evaluations (tests, quizzes and examinations) were all done on paper.
 
-### 🧊 Units
+### 🧪 Testers
+
+Testers are the programs provided by the teacher for running the functions created in each test. Most testers were incomplete on purpose, with "TODO" messages left by the teacher as a hint for what to complete.
+
+Testers were to be submitted alongside the functions, with the modifications by students being worth marks. The testers included in each Task's directory includes the modifications I made to the testers.
+
+## 🧊 Units?
 
 Units are referred to blocks in this course.
