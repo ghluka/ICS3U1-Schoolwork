@@ -8,11 +8,9 @@ while choice != "7":
     if choice == "1":
         #-== square_root() ==-
  
-        """
-        TODO:
-        add a validation loop for the input number to make sure it is positive
-        """
         number = float(input("Number to square root: "))
+        while number < 0:
+            number = float(input("**Positive** number to square root: "))
         
         
         """
@@ -26,35 +24,38 @@ while choice != "7":
     elif choice == "2":
         #-== digit_product_sum() ==-
 
-        """
-        TODO:
-        add a validation loop for the number not being negative
-        """
         low = int(input("Enter a low number for the range: "))
+        while low < 0:
+            low = float(input("Enter a **positive** low number for the range: "))
         
         high = int(input("Enter a high number for the range: "))
+        while high < 0:
+            high = float(input("Enter a **positive** high number for the range: "))
 
         
-        """
-        TODO:
-        add code that will call digit_product_sum() for every number in the
-        specified range.  It will determine which number in the range had the
-        highest 'digit product sum', and will output that number as well as its
-        'digit product sum'
-        """
-        
+        highest = 0
+        highest_product_sum = 0
+
+        step = 1
+        if high < low:
+            step = -1
+        for digit in range(low, high + step, step):
+            product_sum = digit_product_sum(digit)
+            if product_sum > highest_product_sum:
+                highest = digit
+                highest_product_sum = product_sum
+
+        print(f"From {low} to {high}, {highest} had the highest digit product sum ({highest_product_sum})") 
         
             
 
     elif choice == "3":
         #-== text_to_braille() ==-
 
-        """
-        TODO:
-        add a validation loop for the menu input being valid (either '1' or '2')
-        """
         braille_menu = "\n1. text to Braille\n2. Braille to text\n--> "
         t_to_b_choice = input(braille_menu)
+        if t_to_b_choice != "1" and t_to_b_choice != "2":
+            t_to_b_choice = input(braille_menu)
 
         
         
@@ -79,24 +80,18 @@ while choice != "7":
     elif choice == "4":
         #-== domino_str() ==-
   
-        """
-        TODO:
-        add code that will automatically create and print all possible dominos
-        made from numbers 0-6 (inclusive) for each side, resulting in 49
-        different dominoes being output (no user input required).
-        """
-        
+        for left_side in range(0, 7):
+            for right_side in range(0, 7):
+                print(domino_str(left_side, right_side))
         
         
         
     elif choice == "5":
         #-== tree_box() ==-
 
-        """
-        TODO:
-        add a validation loop for the size of the tree not being negative
-        """
         size = int(input("Tree size: "))
+        while size < 0:
+            size = int(input("Tree size (positive): "))
         
 
         """
@@ -111,21 +106,18 @@ while choice != "7":
     elif choice == "6":
         #-== domino_stack() ==-
 
-        """
-        TODO:
-        add 3 separate validation loops, validating each input
-        value before asking for the next one:
-           -for the left number being 1 to 5
-           -for the right number being 1 to 5
-           -for the target points being positive
-        """
         left = int(input("Base domino left # (1 to 5): "))
-
+        while left < 1 or left > 5:
+            left = int(input("Base domino left # (1 to 5): "))
         
         right = int(input("Base domino right # (1 to 5): "))
+        while right < 1 or right > 5:
+            right = int(input("Base domino right # (1 to 5): "))
         
         
         points = int(input("Enter a target number of points: "))
+        while left < 0:
+            left = int(input("Enter a **positive** target number of points: "))
         
         
 
