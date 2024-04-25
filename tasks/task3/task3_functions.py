@@ -271,7 +271,7 @@ def domino_stack(left_base:int, right_base:int, target_points:int) -> str:
             domino_right = random.randint(1, 6)
         
         # game summary
-        stack += f"\ncurrent_round #{current_round} Points: {points}"
+        stack += f"\nGame #{current_round} Points: {points}"
         if points <= target_points:
             stack += "\n"
         out += stack
