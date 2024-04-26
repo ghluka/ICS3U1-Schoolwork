@@ -158,31 +158,31 @@ def braille_to_text(text:str) -> str:
     return out
 
 
-def domino_str(roll_1:int, roll_2:int) -> str:
+def domino_str(domino_1:int, domino_2:int) -> str:
     """Returns a formatted string of two dominos side by side with the parameters being their respective amount of pips"""
     # start grids
     grid_row_1 = "|"
     grid_row_2 = "|"
     grid_row_3 = "|"
 
-    # loops through roll_1 and roll_2
-    for roll in f"{roll_1}{roll_2}":
-        roll = int(roll)
+    # loops through domino_1 and domino_2
+    for domino in f"{domino_1}{domino_2}":
+        domino = int(domino)
 
-        if roll == 2 or roll == 3:
+        if domino == 2 or domino == 3:
             grid_row_1 += "\u25cf    " # top-left pip
             grid_row_3 += "    \u25cf" # bottom-right pip
-        elif roll == 4 or roll == 5:
+        elif domino == 4 or domino == 5:
             grid_row_1 += "\u25cf   \u25cf" # top-left and top-right pips
             grid_row_3 += "\u25cf   \u25cf" # bottom-left and bottom-right pips
-        elif roll == 6:
+        elif domino == 6:
             grid_row_1 += "\u25cf \u25cf \u25cf" # top pips
             grid_row_3 += "\u25cf \u25cf \u25cf" # bottom pips
         else:
             grid_row_1 += "     " # empty top
             grid_row_3 += "     " # empty bottom
 
-        if roll == 1 or roll == 3 or roll == 5:
+        if domino == 1 or domino == 3 or domino == 5:
             grid_row_2 += "  \u25cf  " # center pip
         else:
             grid_row_2 += "     " # empty middle
