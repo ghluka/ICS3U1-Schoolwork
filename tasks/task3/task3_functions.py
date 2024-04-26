@@ -199,7 +199,7 @@ def domino_str(domino_1:int, domino_2:int) -> str:
     out += f"{grid_row_1}\n{grid_row_2}\n{grid_row_3}\n"
     
     # bottom of dice
-    out += " " + f"{chr(8254)}" * 11 + " "
+    out += " " + "\u203e" * 11 + " "
     
     return out
 
