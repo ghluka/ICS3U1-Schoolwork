@@ -54,7 +54,7 @@ while choice != "7":
 
         braille_menu = "\n1. text to Braille\n2. Braille to text\n--> "
         t_to_b_choice = input(braille_menu)
-        if t_to_b_choice != "1" and t_to_b_choice != "2":
+        while t_to_b_choice != "1" and t_to_b_choice != "2":
             t_to_b_choice = input(braille_menu)
 
         
