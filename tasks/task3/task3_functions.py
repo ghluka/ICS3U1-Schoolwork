@@ -9,6 +9,7 @@ __date__ = "2024/04/24"
 import math
 import random
 
+
 def square_root(number:float) -> float:
     """Calculates an approximation of the square root of a number using Heron's method"""
     estimate = 5 * 10 ** (math.log(number, 10) / 2 - 1)
@@ -153,13 +154,13 @@ def braille_to_text(text:str) -> str:
         elif c == "\u2835":
             out += "z"
         elif c == " ":
-            out += " " 
+            out += " "
 
     return out
 
 
 def domino_str(domino_1:int, domino_2:int) -> str:
-    """Returns a formatted string of two dominos side by side with the parameters being their respective amount of pips"""
+    """Returns a formatted string of two dominos side by side with the parameters being their respective amount of pips (0-6)"""
     # start grids
     grid_row_1 = "|"
     grid_row_2 = "|"
@@ -221,14 +222,14 @@ def tree_box(size:int) -> str:
     
     # trunk:
     for i in range(1, size + 1):
-        # alternate trunk styles ("|}" and "{|")
+        # alternate trunk styles between "|}" and "{|"
         if i % 2 == 1:
             out += f"|{'|}': ^{size * 2}}|\n"
         else:
             out += f"|{'{|': ^{size * 2}}|\n"
     
     # box bottom:
-    out += f"+{'-' * size * 2}+\n"
+    out += f"+{'-' * size * 2}+"
     
     return out
 
@@ -249,11 +250,17 @@ def domino_stack(left_base:int, right_base:int, target_points:int) -> str:
         stack_right = right_base
 
         # draw dominos
-        domino_left = random.randint(1, 6)
-        domino_right = random.randint(1, 6)
+        domino_left = random.randrange(1, 6)
+        domino_right = random.randrange(1, 6)
 
         # continue with round until neither drawn dominos match with the top of the stack
-        while domino_left == stack_left or domino_right == stack_right:
+        while (domino_left == stack_left or domino_right == stack_right) or (domino_right == stack_left or domino_left == stack_right):
+            # swap dominos to line up if possible
+            if domino_left == stack_right or domino_right == stack_left: 
+                domino_temp = domino_left
+                domino_left = domino_right
+                domino_right = domino_temp
+
             # add points
             if domino_left == stack_left and domino_right == stack_right:
                 points += 5
@@ -267,8 +274,8 @@ def domino_stack(left_base:int, right_base:int, target_points:int) -> str:
             stack = f"{domino_str(stack_left, stack_right)}\n{stack}"
 
             # draw new dominos
-            domino_left = random.randint(1, 6)
-            domino_right = random.randint(1, 6)
+            domino_left = random.randrange(1, 6)
+            domino_right = random.randrange(1, 6)
         
         # game summary
         stack += f"\nGame #{current_round} Points: {points}"

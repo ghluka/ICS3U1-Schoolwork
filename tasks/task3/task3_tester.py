@@ -9,7 +9,7 @@ while choice != "7":
         #-== square_root() ==-
  
         number = float(input("Number to square root: "))
-        while number < 0:
+        while number <= 0:
             number = float(input("**Positive** number to square root: "))
         
         
