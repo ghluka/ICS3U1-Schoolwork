@@ -14,6 +14,7 @@ def text_shuffle1(text:str) -> str:
 
     return text
 
+
 def text_shuffle2(text:str) -> str:
     """text_shuffle() using slicing"""
     for _ in range(4):
