@@ -26,11 +26,11 @@ while choice != "7":
 
         low = int(input("Enter a low number for the range: "))
         while low < 0:
-            low = float(input("Enter a **positive** low number for the range: "))
+            low = int(input("Enter a **positive** low number for the range: "))
         
         high = int(input("Enter a high number for the range: "))
         while high < 0:
-            high = float(input("Enter a **positive** high number for the range: "))
+            high = int(input("Enter a **positive** high number for the range: "))
 
         
         highest = 0
