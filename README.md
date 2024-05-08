@@ -22,6 +22,23 @@ Testers are the programs provided by the teacher for running the functions creat
 
 Testers were to be submitted alongside the functions, with the modifications by students being worth marks. The testers included in each Task's directory includes the modifications I made to the testers.
 
-## 🧊 Units?
+## 📦 Blocks
 
 Units are referred to blocks in this course.
+
+These blocks include:
+- [x] 1. Basics, Functions
+
+    Concepts learned: Types, variables, arithmetic, input, output, f-strings, and functions
+
+- [x] 2. Conditionals
+
+    Concepts learned: Booleans, comparisons, if-statments
+
+- [x] 3. Repetition
+
+    Concepts learned: While loops, for loops, concatenation
+
+- [ ] 4. Sequences
+
+    Concepts learned (so far): Indexing & slicing, immutability
