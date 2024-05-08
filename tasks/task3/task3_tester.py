@@ -26,11 +26,11 @@ while choice != "7":
 
         low = int(input("Enter a low number for the range: "))
         while low < 0:
-            low = int(input("Enter a **positive** low number for the range: "))
+            low = int(input("Enter a **non-negative** low number for the range: "))
         
         high = int(input("Enter a high number for the range: "))
         while high < 0:
-            high = int(input("Enter a **positive** high number for the range: "))
+            high = int(input("Enter a **non-negative** high number for the range: "))
 
         
         highest = 0
@@ -91,7 +91,7 @@ while choice != "7":
 
         size = int(input("Tree size: "))
         while size < 0:
-            size = int(input("Tree size (positive): "))
+            size = int(input("**Non-negative** tree size: "))
         
 
         """
@@ -116,7 +116,7 @@ while choice != "7":
         
         
         points = int(input("Enter a target number of points: "))
-        while left < 0:
+        while left <= 0:
             left = int(input("Enter a **positive** target number of points: "))
         
         
