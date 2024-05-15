@@ -1,6 +1,8 @@
 def num_vowels3(text:str) -> int:
     text = text.lower()
     
-    vowels = text.count("a") + text.count("e") + text.count("i") + text.count("o") + text.count("u")
-
+    vowels = 0
+    for vowel in "aeiou":
+        vowels += text.count(vowel)
+        
     return vowels
