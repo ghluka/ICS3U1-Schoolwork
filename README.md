@@ -41,4 +41,4 @@ These blocks include:
 
 - [ ] 4. Sequences
 
-    Concepts learned (so far): Indexing & slicing, immutability
+    Concepts learned (so far): Indexing & slicing, immutability, string methods, file input
