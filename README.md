@@ -2,7 +2,7 @@
 
 This repository is comprised of all the code I've written for my grade 11 computer science course.
 
-Due to the nature of the course, if we had previous knowledge in Python we would be required to let it go and only use information taught in class. Therefore things such as list comprehension or using loops in a unit where loops weren't taught wouldn't be allowed.
+Due to the nature of the course, we can only use knowledge taught (see the bottom for concepts learned in each unit) in the course.
 
 ## 💪 Warmups
 
@@ -20,7 +20,7 @@ The `tasks` directory contains all evaluations worth marks that were done online
 
 Testers are the programs provided by the teacher for running the functions created in each test. Most testers were incomplete on purpose, with "TODO" messages left by the teacher as a hint for what to complete.
 
-Testers were to be submitted alongside the functions, with the modifications by students being worth marks. The testers included in each Task's directory includes the modifications I made to the testers.
+Testers were to be submitted alongside the functions, with the modifications by students being worth marks. The testers included in each task's directory includes the modifications I made to the testers.
 
 ## 📦 Blocks
 
@@ -41,4 +41,4 @@ These blocks include:
 
 - [ ] 4. Sequences
 
-    Concepts learned (so far): Indexing & slicing, immutability, string methods, file input
+    Concepts learned (so far): Indexing & slicing, methods, file I/O, lists
