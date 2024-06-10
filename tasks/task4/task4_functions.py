@@ -4,8 +4,11 @@
 __author__ = "Luka"
 __date__ = "2024/06/10"
 
+import random
+
 
 def get_closest(values:list, target:int) -> int:
+    """Returns the closest number from a list of values to a target"""
     closest = values[0]
 
     for v in values:
@@ -15,67 +18,93 @@ def get_closest(values:list, target:int) -> int:
     return closest
 
 
-def align_strings(strings:list, substr:list) -> list:
+def get_closest_pair(sequence_1:list, sequence_2:list) -> int:
     closest_i = 0
+    closest = abs(sequence_1[closest_i] - sequence_2[closest_i])
 
-    if len(strings) != len(substr):
-        return []
-    
-    for i in range(0, len(strings)):
-        if abs(substr[i] - strings[i]) < abs(substr[closest_i] - strings[closest_i]):
+    for i in range(0, len(sequence_1)):
+        v = sequence_1[i]
+        target = sequence_2[i]
+
+        if abs(target - v) < abs(target - closest):
+            closest = abs(target - v)
             closest_i = i
-            
-    return [strings[closest_i], substr[closest_i]]
+
+    return [sequence_1[closest_i], sequence_2[closest_i]]
 
 
 def get_proper_divisors(number:int) -> list:
+    """
+    Returns a list of the proper divisors (divisors of a number excluding
+    itself) of a number.
+    """
     divisors = []
 
-    for n in range(number - 1, 0, -1):
+    for n in range(number // 2, 0, -1):
         if number % n == 0:
             divisors.append(n)
 
     return divisors
 
-
 def rolling_averages(values:list, size:int) -> list:
+    """
+    Returns a list of the rolling averages of a list of values
+    with a given size.
+    """
     averages = []
     
     for i in range(len(values) - size + 1):
         average = []
+
         for a in range(size):
             average.append(values[i + a])
+
         averages.append(sum(average) / size)
 
     return averages
 
 
 def align_strings(strings:list, substr:str) -> str:
-    floors = []
-    ceils = []
-    spacing = 0
+    """
+    Returns a string of an aligned list of strings by a substring,
+    ignores all strings without the substring.
+
+    Example:
+    >>> words = ["mathematics", "radius", "theorem", "breathe", "apothem", "area"]
+    >>> print(align_strings(words, "The"))
+      maTHEhematics
+        THEheorem  
+    breaTHEhe      
+     apoTHEhem     
+    """
+    left = []
+    padding_l = 0
+    right = []
+    padding_r = 0
 
     for string in strings:
-        i = string.find(substr)
+        i = string.lower().find(substr.lower())
         if i != -1:
-            floors.append(string[:i])
-            ceils.append(string[i + 1:])
-            if len(string[:i]) > spacing:
-                spacing = len(string[:i])
+            left.append(string[:i])
+            right.append(string[i + 1:])
+
+            if len(left[-1]) > padding_l:
+                padding_l = len(left[-1])
+            if len(right[-1]) > padding_r:
+                padding_r = len(right[-1])
 
     out = ""
-    print(floors, ceils)
-    for i in range(len(floors)):
-        out += f"{floors[i].lower(): >{spacing}}{substr.upper()}{ceils[i]}\n"
+    
+    for i in range(len(left)):
+        out += f"{left[i].lower(): >{padding_l}}{substr.upper()}{right[i]: <{padding_r}}\n"
 
-    return out
-
+    return out[:-1] # remove trailing new-line
 
 def make_decks(num_decks: int) -> str: # provided by assignment
-    '''
-    Return a list of 2-character cards for num_decks standard card decks,
+    """
+    Returns a list of 2-character cards for num_decks standard card decks,
     ordered by value (A to K) and suit (♠, ♣, ♥, ♦).
-    '''
+    """
     deck = []
 
     for c in 'A23456789TJQK':
@@ -86,71 +115,51 @@ def make_decks(num_decks: int) -> str: # provided by assignment
 
 
 def deal_n_cards(cards:list, n:int) -> list:
-    return []
+    """
+    Returns the first n cards from the list "cards" as a new list,
+    removes the first n cards from the list "cards".
+    """
+    hand = []
+
+    if len(cards) - n < 0:
+        n = len(cards)
+
+    for _ in range(n):
+        hand.append(cards[0])
+        cards.pop(0)
+
+    return hand
 
 
-def cut_the_cards(cards:list):
-    return None
+def cut_the_cards(cards:list) -> None:
+    """Cuts a list in two halfs from a random position and merges them."""
+    temp_cards = cards.copy()
+
+    i = random.randrange(len(cards))
+    cards.clear()
+    cards.extend(temp_cards[i:])
+    cards.extend(temp_cards[:i])
     
 
 def shuffler(values:list) -> list:
-    return []
+    # cut the deck
+    i = random.randrange(len(values))
+    left = values[:i]
+    right = values[i:]
 
+    # merge decks
+    merged = []
 
-#-----------------------------------------------------------------------------
-if __name__ == "__main__": # provided by assignment
-    '''
-    Below is all testing code from the handout's given test cases.
-    Uncomment the sets of tests as you complete the functions in order
-    to test your own results.
-    '''
+    while len(left) > 0 and len(right) > 0:
+        if random.randrange(0, 2) == 0:
+            merged.append(left[0])
+            left.pop(0)
+        else:
+            merged.append(right[-1])
+            right.pop(-1)
+    
+    # place remaining cards
+    merged.extend(left)
+    merged.extend(right)
 
-    #numbers = [5, 9, 0, -3, 15, 8, 4]
-    #print(get_closest(numbers, 10))	 
-    
-    
-    #numbers1 = [5, 9, 0, -3, 15, 8, 4]
-    #numbers2 = [12, 13, 8, 2, 0, 11, -1]
-    #print(get_closest_pair(numbers1, numbers2))	
-    #print(get_closest_pair(numbers1, [1, 2, 3]))	
-    
-    
-    #print(get_proper_divisors(12))
-    #print(get_proper_divisors(29)) 
-    #print(get_proper_divisors(1))
-    
-    
-    #numbers = [3, 9, 2, 10, 14, 20, 13]
-    #print(rolling_averages(numbers, 2))	
-    #print(rolling_averages(numbers, 4))	 
-    #print(rolling_averages(numbers, 10))	 
-
-    
-    lines = ["Computer", "Science", "is", "a challenge", "for MANY", "people"]
-    print(align_strings(lines, "e"))
-    #words = ["mathematics", "radius", "theorem", "breathe", "apothem", "area"]
-    #print(align_strings(words, "The"))
-    
-    
-    decks = make_decks(1)
-    #hand = deal_n_cards(decks, 8)
-    #print(len(hand), len(decks))
-    #print(hand)
-    #print(decks)
-    
-    
-    #cards = ['T♣', 'A♠', '7♥', '4♣', '3♦', 'K♦', 'K♥', '5♣']
-    #cut_the_cards(cards)
-    #print(cards) 
-    #cut_the_cards(cards)
-    #print(cards)
-    
-    
-    #cards = ['T♣', 'A♠', '7♥', '4♣', '3♦', 'K♦', 'K♥', '5♣']
-    #cards = shuffler(cards)
-    #print(cards)
-    
-    
-    #cards = ['T♣', 'A♠', '7♥', '4♣', '3♦', 'K♦', 'K♥', '5♣']
-    #cards = shuffler(cards)
-    #print(cards)
+    return merged
