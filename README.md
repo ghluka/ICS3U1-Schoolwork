@@ -39,6 +39,6 @@ These blocks include:
 
     Concepts learned: While loops, for loops, concatenation
 
-- [ ] 4. Sequences
+- [x] 4. Sequences
 
     Concepts learned (so far): Indexing & slicing, methods, file I/O, lists
