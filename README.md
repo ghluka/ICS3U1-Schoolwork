@@ -41,4 +41,4 @@ These blocks include:
 
 - [x] 4. Sequences
 
-    Concepts learned (so far): Indexing & slicing, methods, file I/O, lists
+    Concepts learned: Indexing & slicing, methods, file I/O, lists
