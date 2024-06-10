@@ -29,15 +29,46 @@ def align_strings(strings:list, substr:list) -> list:
 
 
 def get_proper_divisors(number:int) -> list:
-    return []
+    divisors = []
+
+    for n in range(number - 1, 0, -1):
+        if number % n == 0:
+            divisors.append(n)
+
+    return divisors
 
 
 def rolling_averages(values:list, size:int) -> list:
-    return []
+    averages = []
+    
+    for i in range(len(values) - size + 1):
+        average = []
+        for a in range(size):
+            average.append(values[i + a])
+        averages.append(sum(average) / size)
+
+    return averages
 
 
-def align_strings(strings:list, substr:list) -> str:
-    return ""
+def align_strings(strings:list, substr:str) -> str:
+    floors = []
+    ceils = []
+    spacing = 0
+
+    for string in strings:
+        i = string.find(substr)
+        if i != -1:
+            floors.append(string[:i])
+            ceils.append(string[i + 1:])
+            if len(string[:i]) > spacing:
+                spacing = len(string[:i])
+
+    out = ""
+    print(floors, ceils)
+    for i in range(len(floors)):
+        out += f"{floors[i].lower(): >{spacing}}{substr.upper()}{ceils[i]}\n"
+
+    return out
 
 
 def make_decks(num_decks: int) -> str: # provided by assignment
@@ -95,13 +126,13 @@ if __name__ == "__main__": # provided by assignment
     #print(rolling_averages(numbers, 10))	 
 
     
-    #lines = ["Computer", "Science", "is", "a challenge", "for MANY", "people"]
-    #print(align_strings(lines, "e"))
+    lines = ["Computer", "Science", "is", "a challenge", "for MANY", "people"]
+    print(align_strings(lines, "e"))
     #words = ["mathematics", "radius", "theorem", "breathe", "apothem", "area"]
     #print(align_strings(words, "The"))
     
     
-    #decks = make_decks(1)
+    decks = make_decks(1)
     #hand = deal_n_cards(decks, 8)
     #print(len(hand), len(decks))
     #print(hand)
