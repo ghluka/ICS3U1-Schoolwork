@@ -19,6 +19,7 @@ def get_closest(values:list, target:int) -> int:
 
 
 def get_closest_pair(sequence_1:list, sequence_2:list) -> int:
+    """Returns a pair of the closest two values from two related lists"""
     closest_i = 0
     closest = abs(sequence_1[closest_i] - sequence_2[closest_i])
 
@@ -92,6 +93,7 @@ def align_strings(strings:list, substr:str) -> str:
             left.append(string[:i])
             right.append(string[i + len(substr):])
 
+            # increase padding if string is the biggest in the list
             if len(left[-1]) > padding_l:
                 padding_l = len(left[-1])
             if len(right[-1]) > padding_r:
@@ -147,6 +149,7 @@ def cut_the_cards(cards:list) -> None:
     
 
 def shuffler(values:list) -> list:
+    """Shuffles a list of values and returns the shuffled list"""
     # cut the deck
     i = len(values) // 2
     left = values[:i]
