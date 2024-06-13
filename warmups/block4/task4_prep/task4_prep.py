@@ -16,13 +16,7 @@ file.close()
 # part 2
 for i in range(1, 13):
     students = grades.count(i)
-    if students == 1:
-        print(f"Grade {i}: 1 student")
-    else:
-        print(f"Grade {i}: {students} students")
-
-# part 4
-fav_colours.sort(key=fav_colours.count)
+    print(f"Grade {i}: {students} students")
 
 # part 3
 unique_colours = []
@@ -31,12 +25,17 @@ for colour in fav_colours:
         unique_colours.append(colour)
 
 # part 4
-print("\nFAVOURITE COLOUR LEADERBOARD:")
-i = 1
+colour_likes = []
 for colour in unique_colours:
     likes = fav_colours.count(colour)
-    if likes == 1:
-        print(f" {i}. {colour}, liked by {likes} student")
-    else:
-        print(f" {i}. {colour}, liked by {likes} students")
+    colour_likes.append(likes)
+colour_likes.sort()
+colour_likes.reverse()
+
+print("\nFAVOURITE COLOUR LEADERBOARD:")
+i = 1
+for likes in colour_likes:
+    for colour in unique_colours:
+        if fav_colours.count(colour) == likes:
+            print(f"{i}. {colour}, liked by {likes} students")
     i += 1
