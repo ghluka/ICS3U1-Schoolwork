@@ -88,6 +88,7 @@ def align_strings(strings:list, substr:str) -> str:
     padding_r = 0
 
     for string in strings:
+        # find substring in string
         i = string.lower().find(substr.lower())
         if i != -1:
             left.append(string[:i])
@@ -159,11 +160,12 @@ def shuffler(values:list) -> list:
     merged = []
 
     while len(left) > 0 and len(right) > 0:
+        # pick left or right randomly
         if random.randrange(0, 2) == 0:
-            merged.append(left[0])
+            merged.append(left[0]) # add first left card
             left.pop(0)
         else:
-            merged.append(right[-1])
+            merged.append(right[-1]) # add last right card
             right.pop(-1)
     
     # place remaining cards
