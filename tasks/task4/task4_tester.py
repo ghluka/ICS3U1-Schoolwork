@@ -60,13 +60,27 @@ while choice != "8":
         while high <= low:
             high = int(input(f"Must be higher than {low}: "))
         
-        
-        '''***** TO DO: COMPLETE THE REQUIRED CODE BELOW HERE! *******'''
+        abudant = []
+        perfect = []
+        deficient = []
+        prime = []
 
+        for i in range(low, high + 1):
+            proper_divisors = get_proper_divisors(i)
+            if len(proper_divisors) == 1 and proper_divisors[0] == 1:
+                prime.append(i)
+            if sum(proper_divisors) > i:
+                abudant.append(i)
+            elif sum(proper_divisors) == i:
+                perfect.append(i)
+            else:
+                deficient.append(i)
 
-
-
-        '''***** COMPLETE THE REQUIRED CODE ABOVE HERE! *******'''
+        print(f"In the numbers from {low} to {high}:")
+        print(f"-> {len(abudant)} are abundant: {abudant}")
+        print(f"-> {len(perfect)} are perfect: {perfect}")
+        print(f"-> {len(deficient)} are deficient: {deficient}")
+        print(f"-> {len(prime)} are prime: {prime}")
 
         
     elif choice == "4":
@@ -94,14 +108,14 @@ while choice != "8":
 
         print("Enter a list of integers, such as [1, 45, -3, 78, -10, 0, 12]:")
         values = eval(input(">>>:"))
+        avg = sum(values) / len(values)
 
-        '''***** TO DO: COMPLETE THE REQUIRED CODE BELOW HERE! *******'''
+        while len(values) != 1:
+            values = rolling_averages(values, 2)
 
+        print(f"All adjacent average: {values[0]}")
+        print(f"Actual average: {avg}")
 
-
-        '''***** COMPLETE THE REQUIRED CODE ABOVE HERE! *******'''
-       
- 
 
     elif choice == "6":
         #-== align_strings() ==-

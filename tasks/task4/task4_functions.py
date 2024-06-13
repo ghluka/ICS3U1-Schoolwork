@@ -22,6 +22,9 @@ def get_closest_pair(sequence_1:list, sequence_2:list) -> int:
     closest_i = 0
     closest = abs(sequence_1[closest_i] - sequence_2[closest_i])
 
+    if len(sequence_2) != len(sequence_1):
+        return []
+    
     for i in range(0, len(sequence_1)):
         v = sequence_1[i]
         target = sequence_2[i]
@@ -45,6 +48,7 @@ def get_proper_divisors(number:int) -> list:
             divisors.append(n)
 
     return divisors
+
 
 def rolling_averages(values:list, size:int) -> list:
     """
@@ -86,7 +90,7 @@ def align_strings(strings:list, substr:str) -> str:
         i = string.lower().find(substr.lower())
         if i != -1:
             left.append(string[:i])
-            right.append(string[i + 1:])
+            right.append(string[i + len(substr):])
 
             if len(left[-1]) > padding_l:
                 padding_l = len(left[-1])
@@ -98,7 +102,8 @@ def align_strings(strings:list, substr:str) -> str:
     for i in range(len(left)):
         out += f"{left[i].lower(): >{padding_l}}{substr.upper()}{right[i]: <{padding_r}}\n"
 
-    return out[:-1] # remove trailing new-line
+    return out.removesuffix("\n")
+
 
 def make_decks(num_decks: int) -> str: # provided by assignment
     """
@@ -135,7 +140,7 @@ def cut_the_cards(cards:list) -> None:
     """Cuts a list in two halfs from a random position and merges them."""
     temp_cards = cards.copy()
 
-    i = random.randrange(len(cards))
+    i = random.randrange(1, len(cards))
     cards.clear()
     cards.extend(temp_cards[i:])
     cards.extend(temp_cards[:i])
@@ -143,7 +148,7 @@ def cut_the_cards(cards:list) -> None:
 
 def shuffler(values:list) -> list:
     # cut the deck
-    i = random.randrange(len(values))
+    i = len(values) // 2
     left = values[:i]
     right = values[i:]
 
