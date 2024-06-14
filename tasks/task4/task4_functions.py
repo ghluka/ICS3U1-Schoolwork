@@ -44,10 +44,16 @@ def get_proper_divisors(number:int) -> list:
     """
     divisors = []
 
-    for n in range(number // 2, 0, -1):
-        if number % n == 0:
+    for n in range(int(number ** .5), 0, -1):
+        div = number / n
+        if div == int(div):
+            if n != div and n != 1:            
+                divisors.append(int(div))
             divisors.append(n)
-
+    
+    divisors.sort()
+    divisors.reverse()
+    
     return divisors
 
 
