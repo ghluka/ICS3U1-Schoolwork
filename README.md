@@ -1,6 +1,9 @@
 # 🎓 ICS3U1 Schoolwork
 
-This repository is comprised of all the code I've written for my grade 11 computer science course.
+> [!IMPORTANT]  
+> This project is archived as the course has ended.
+
+This repository is comprised of all the code I've written for my grade 11 computer science course. It does not include any lessons or the assignments themselves, just the solutions.
 
 Due to the nature of the course, we can only use knowledge taught (see the bottom for concepts learned in each unit) in the course.
 
@@ -10,17 +13,19 @@ The `warmups` directory contains all solutions to problems given by the teacher 
 
 ## 🏋️ Exercises
 
-The `exercises` directory contains all warmups that were required to be submitted to the teacher.
+The `exercises` directory contains all warmups that were to be optionally submitted to the teacher for feedback.
 
 ## 📜 Tasks
 
-The `tasks` directory contains all evaluations worth marks that were done online. These are typically just the final projects of a unit as other evaluations (tests, quizzes and examinations) were all done on paper.
+The `tasks` directory contains all evaluations worth marks that were done online. 
+
+These did not include tests as those were done on paper.
 
 ### 🧪 Testers
 
-Testers are the programs provided by the teacher for running the functions created in each test. Most testers were incomplete on purpose, with "TODO" messages left by the teacher as a hint for what to complete.
+Testers are the programs provided by the teacher for running the functions created in each test. Most testers were incomplete on purpose, with "TODO" messages left by the teacher to implement.
 
-Testers were to be submitted alongside the functions, with the modifications by students being worth marks. The testers included in each task's directory includes the modifications I made to the testers.
+Testers were to be submitted alongside the functions, with the modifications by students being worth marks.
 
 ## 📦 Blocks
 
